@@ -17,6 +17,7 @@
 #include <initializer_list>
 #include <cstddef>
 #include "dependencies/list_node.hpp"
+#include "dependencies/list_iterator.hpp"
 
 
 
@@ -24,13 +25,14 @@ template <class _Ty>
 class SinglyList
 {
 public:
-    using       nodeptr     =       SinglyNode<_Ty>;
+    using       nodeptr     =       SinglyNode<_Ty>*;
+    using       node        =       SinglyNode<_Ty>;
 public:
 
     /**
      *  constructor
     **/
-    SinglyList() = default;
+    SinglyList();
 
 
     /**
@@ -52,7 +54,7 @@ public:
     /**
      *  size() method : returns elemnt's count.
      *
-     *  @return     thesize : unsigned int    ->    //
+     *  @return     theSize : unsigned int    ->    //
     **/
     const size_t size() const;
 
@@ -74,8 +76,8 @@ public:
 
 
     /**
-     *  pop_back() method : Removes the last item from list.
-     *
+     *  pop_back() method : Removes the last item from list.  
+     * 
     **/
     void pop_back();
 
@@ -94,7 +96,7 @@ public:
 
 
     /**
-     *  front() method :  returns first element in the array.
+     *  front() method :  returns first element in the list.
      * 
      *  @return     _Ty   ->    reference value of the template parameter.
     **/
@@ -102,17 +104,16 @@ public:
 
 
     /**
-     *  back() method :  returns last element in the array.
+     *  back() method :  returns last element in the list.
      * 
      *  @return     _Ty   ->    reference value of the template parameter.
     **/
     _Ty back() const;
-    
 
 private:
     nodeptr     head;
     nodeptr     tail;
-    size_t      thesize;
+    size_t      theSize = 0;
 };
 
 
