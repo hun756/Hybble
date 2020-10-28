@@ -30,9 +30,70 @@ class ConstIterator
 template <class _Ty>
 class Iterator : public ConstIterator<_Ty>
 {
+public:
+    Iterator();
 
+    Iterator(DoublyNode<_Ty>*);
+
+    bool operator !=(const Iterator&);
+
+    Iterator& operator ++();
+
+    Iterator& operator ++(int);
+
+    _Ty& operator *();
+private:
+    DoublyNode<_Ty>* current;
 };
 
+
+template<class _Ty>
+Iterator<_Ty>::Iterator() : current(nullptr)
+{
+
+}
+
+
+
+template<class _Ty>
+Iterator<_Ty>::Iterator(DoublyNode<_Ty>* initLock) 
+{
+    current = initLock;
+}
+
+
+template<class _Ty>
+bool Iterator<_Ty>::operator !=(const Iterator& rhs) 
+{
+    return current != rhs.current;
+}
+
+
+template<class _Ty>
+Iterator<_Ty>& Iterator<_Ty>::operator ++() 
+{
+    current = current->next;
+    return *this;
+}
+
+
+template<class _Ty>
+Iterator<_Ty>& Iterator<_Ty>::operator ++(int) 
+{
+    Iterator iter = *this;
+    current = current->next;
+    return iter;
+}
+
+
+template<class _Ty>
+_Ty& Iterator<_Ty>::operator *() 
+{
+    return current->data;
+}
+
+//  ---------------------------------------------------------------
+//  ---------------------------------------------------------------
 template <class _Ty>
 class ConstReverseIterator
 {

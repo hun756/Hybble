@@ -149,3 +149,17 @@ _Ty DoublyList<_Ty>::back() const
 
     return tail->data;
 }
+
+
+template<class _Ty>
+typename DoublyList<_Ty>::Iterator DoublyList<_Ty>::begin() 
+{
+    return head;
+}
+
+
+template<class _Ty>
+typename DoublyList<_Ty>::Iterator DoublyList<_Ty>::end() 
+{
+    return tail->next;
+}

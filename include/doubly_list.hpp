@@ -23,6 +23,7 @@ class DoublyList
 public:
     using      nodeptr      =     DoublyNode<_Ty>*;
     using      node         =     DoublyNode<_Ty>;
+    using      Iterator     =     Iterator<_Ty>;
 public:
 
      /**
@@ -104,6 +105,19 @@ public:
      *  @return     _Ty   ->    reference value of the template parameter.
     **/
     _Ty back() const;
+
+
+    /* Iterative methods */
+
+    /**
+     *  begin() method :    return adress of first element
+     *  end()   method :    return adress of last element  
+     * 
+     *  @return     object from iterator class
+    **/
+    Iterator begin();
+
+    Iterator end();
 
 private:
 
