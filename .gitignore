@@ -30,6 +30,14 @@
 *.exe
 *.out
 *.app
+*.x
 
-# VS Code Configuraiton Files
-.vscode/*
+# Build directory
+build/
+cmake-build-debug
+.idea
+.vscode
+
+# Doxygen output
+html/
+latex/
