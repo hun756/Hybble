@@ -58,7 +58,6 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/external/googletest/googletest/include)
 
 # Make variables referring to all the sources and test files.
-file(GLOB SOURCES "src/*.cpp")
 file(GLOB TESTFILES "tests/*.cpp")
 set(TEST_MAIN unit_tests.x)  # Default name for test executable (change if you wish).
 
@@ -68,14 +67,7 @@ set(TEST_MAIN unit_tests.x)  # Default name for test executable (change if you w
 #                            Build! (Change as needed)
 # --------------------------------------------------------------------------------
 # Compile all sources into a library. Called engine here (change if you wish).
-add_library( engine ${SOURCES} )
-
-# Add an executable for the file main.cpp, here called main.x.
-# If you add more executables, copy these three lines accordingly.
-add_executable(main.x app/main.cpp)   # Name of exec. and location of file.
-add_dependencies(main.x engine)       # main.cpp uses the 'engine', add dep.
-target_link_libraries(main.x engine)  # Link the executable to the 'engine'.
-
+add_library( engine ${TESTFILES} )
 
 
 # --------------------------------------------------------------------------------

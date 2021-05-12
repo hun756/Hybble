@@ -1,10 +1,10 @@
 /**
- *  File        :   singly_list.cpp
+ *  File        :   singly_list.tcc
  *  Explain     :   C++ Singly list implementation like std::list<>
  *  Author      :   Mehmet Ekemen
  *  Nickname    :   `hun
  *  Email       :   ekemenms@hotmail.com
- *  Date        :   23.10.2020      last : 25.10.2020 (edited)
+ *  Date        :   5.12.2012 (DD-MM-YYYY)  (Updated)
  *  Github      :   github.com/hun756
  *  Resource    :   https://github.com/hun756/Data-Sutructures-in-CPlusPlus/
 **/
@@ -12,41 +12,42 @@
 /* implementation of singly_list.hpp */
 
 #include "singly_list.hpp"
+#include <stdexcept>
 
-template<class _Ty>
-SinglyList<_Ty>::SinglyList() : head(nullptr), tail(nullptr)
+template<class T>
+SinglyList<T>::SinglyList() : head(nullptr), tail(nullptr)
 {
 
 }
 
 
-template<class _Ty>
-SinglyList<_Ty>::SinglyList(std::initializer_list<_Ty> l) 
+template<class T>
+SinglyList<T>::SinglyList(std::initializer_list<T> l) 
 {
     // for (auto iter = l.begin(); iter != l.end(); ++iter)
     // {   
-    //     const _Ty val = *iter; 
+    //     const T val = *iter; 
     //     push_back(val);
     // }
 }
 
 
-template<class _Ty>
-const bool SinglyList<_Ty>::empty() const
+template<class T>
+const bool SinglyList<T>::empty() const
 {
     return head == nullptr;
 }
 
 
-template<class _Ty>
-const size_t SinglyList<_Ty>::size() const
+template<class T>
+const size_t SinglyList<T>::size() const
 {      
     return theSize;
 }
 
 
-template<class _Ty>
-void SinglyList<_Ty>::push_back(const _Ty& val) 
+template<class T>
+void SinglyList<T>::push_back(const T& val) 
 {
     nodeptr temp = new node(val);
 
@@ -66,8 +67,8 @@ void SinglyList<_Ty>::push_back(const _Ty& val)
 }
 
 
-template<class _Ty>
-void SinglyList<_Ty>::push_front(const _Ty& val) 
+template<class T>
+void SinglyList<T>::push_front(const T& val) 
 {
     nodeptr temp = new node(val);
     if (head)
@@ -86,8 +87,8 @@ void SinglyList<_Ty>::push_front(const _Ty& val)
 }
 
 
-template<class _Ty>
-void SinglyList<_Ty>::pop_back() 
+template<class T>
+void SinglyList<T>::pop_back() 
 {
     if (empty())
         throw std::domain_error("List is empty : pop_back()");
@@ -114,8 +115,8 @@ void SinglyList<_Ty>::pop_back()
 }
 
 
-template<class _Ty>
-void SinglyList<_Ty>::pop_front() 
+template<class T>
+void SinglyList<T>::pop_front() 
 {
     if (empty())
         throw std::domain_error("List is empty : pop_back()");
@@ -129,8 +130,8 @@ void SinglyList<_Ty>::pop_front()
 }
 
 
-template<class _Ty>
-void SinglyList<_Ty>::clear() 
+template<class T>
+void SinglyList<T>::clear() 
 {
     nodeptr temp;
     
@@ -148,8 +149,8 @@ void SinglyList<_Ty>::clear()
 }
 
 
-template<class _Ty>
-_Ty SinglyList<_Ty>::front() const
+template<class T>
+T SinglyList<T>::front() const
 {
     if (empty())
         throw std::domain_error("List is empty : front()");
@@ -158,8 +159,8 @@ _Ty SinglyList<_Ty>::front() const
 }
 
 
-template<class _Ty>
-_Ty SinglyList<_Ty>::back() const
+template<class T>
+T SinglyList<T>::back() const
 {
     if (empty())
         throw std::domain_error("List is empty : back()");

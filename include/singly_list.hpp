@@ -4,7 +4,7 @@
  *  Author      :   Mehmet Ekemen
  *  Nickname    :   `hun
  *  Email       :   ekemenms@hotmail.com
- *  Date        :   22.10.2020      last : 24.10.2020 (edited)
+ *  Date        :   5.12.2012 (DD-MM-YYYY)  (Updated)
  *  Github      :   github.com/hun756
  *  Resource    :   https://github.com/hun756/Data-Sutructures-in-CPlusPlus/
 **/
@@ -21,12 +21,12 @@
 
 
 
-template <class _Ty>
+template <class T>
 class SinglyList
 {
 public:
-    using       nodeptr     =       SinglyNode<_Ty>*;
-    using       node        =       SinglyNode<_Ty>;
+    using       nodeptr     =       SinglyNode<T>*;
+    using       node        =       SinglyNode<T>;
 public:
 
     /**
@@ -40,75 +40,96 @@ public:
      *
      *  @param      l   ->      object from initializer_list class
     **/
-    SinglyList(std::initializer_list<_Ty>);
+    SinglyList(std::initializer_list<T>);
 
 
     /**
-     *  empty() method : if list has no element, return true.
+     *  @brief
+     *      This method checks if the array is empty.
      *
-     *  @return 	 value of bool  ->  (head == NULL)
+     *  @return
+     *      value of bool
+     *
+     *  @retval
+     *      true if index == 0
     **/
     const bool empty() const;
 
 
     /**
-     *  size() method : returns elemnt's count.
+     *  @brief
+     *      This method returns the number of elements of the array.
      *
-     *  @return     theSize : unsigned int    ->    //
+     *  @return
+     *      size_t
+     *
+     *  @retval
+     *      index
     **/
     const size_t size() const;
 
 
     /**
-     *  push_back() method : Typeadds an element to the ending of the list.
+     *  @brief
+     *      This method adds an element to the ending of
+     *      the dynamic array.
      *
-     *  @param 		 val : const template reference
+     *  @param  val
+     *      It is the value of the element to be added.
     **/
-    void push_back(const _Ty&);
+    void push_back(const T&);
 
 
     /**
-     *  push_front() method : Typeadds an element to the beginning of the list.
+     *  @brief
+     *      This method adds an element to the beginning of
+     *      the dynamic array.
      *
-     *  @param 		  val : const template reference
+     *  @param  val
+     *      It is the value of the element to be added.
     **/
-    void push_front(const _Ty&);
+    void push_front(const T&);
 
 
     /**
-     *  pop_back() method : Removes the last item from list.  
-     * 
+     *  @brief
+     *      This method removes the last item from list.
     **/
     void pop_back();
 
 
     /**
-     *  pop_front() method : Removes the first item from list.
-     *
+     *  @brief
+     *      This method removes the first item from list.
     **/
     void pop_front();
 
 
     /**
-     *  clear() method : clears the contents of the list
+     *  @brief
+     *      This method clears the contents of the list
     **/
     void clear();
 
 
     /**
-     *  front() method :  returns first element in the list.
-     * 
-     *  @return     _Ty   ->    reference value of the template parameter.
-    **/
-    _Ty front() const;
+    *  @brief
+    *      This method :  returns first element in the array.
+    *
+    *  @return
+    *      the first element of the array.
+   **/
+    T front() const;
 
 
     /**
-     *  back() method :  returns last element in the list.
-     * 
-     *  @return     _Ty   ->    reference value of the template parameter.
+     *  @brief
+     *      This method :  returns first element in the array.
+     *
+     *  @return
+     *      the last element of the array.
     **/
-    _Ty back() const;
+    T back() const;
 
 private:
     nodeptr     head;
@@ -117,12 +138,14 @@ private:
 };
 
 
-template <class _Ty>
-class CircularSinlyList : public SinglyList<_Ty>
+template <class T>
+class CircularSinlyList : public SinglyList<T>
 {
 
 };
 
-#include "../src/singly_list.cpp"
+
+//> template implementation
+#include "singly_list.tcc"
 
 #endif /* end of include guard : SINGLY_LIST_HPP */

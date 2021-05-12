@@ -1,81 +1,106 @@
 /**
- *  File        :   doubly_list.cpp
+ *  File        :   doubly_list.tcc
  *  Explain     :   C++ doubly_list implementation like std::list<>
  *  Author      :   Mehmet Ekemen
  *  Nickname    :   `hun
  *  Email       :   ekemenms@hotmail.com
- *  Date        :   23.10.2020
+ *  Date        :   5.12.2012 (DD-MM-YYYY)  (Updated)
  *  Github      :   github.com/hun756
  *  Resource    :   https://github.com/hun756/Data-Sutructures-in-CPlusPlus/
 **/
+#include <list>
 
 /* implementation of doubly_list.hpp */
 #include "doubly_list.hpp"
+#include <stdexcept>
 
 
 
-template<class _Ty>
-DoublyList<_Ty>::DoublyList() : head(nullptr), tail(nullptr)
+template<class T>
+DoublyList<T>::DoublyList() : head(nullptr), tail(nullptr)
 {
 
 }
 
 
-template<class _Ty>
-DoublyList<_Ty>::DoublyList(std::initializer_list<_Ty> l) 
+template<class T>
+DoublyList<T>::DoublyList(std::initializer_list<T> l) 
 {
-    // none
+    for (auto iter = l.begin(); iter != l.end(); ++iter)
+    {   
+        const T val = *iter; 
+        if (head == nullptr)
+        {
+            head = new node(val);
+            tail = head;
+        }
+        
+        else
+        {
+            nodeptr temp = new node(val);
+            tail->next   = temp;
+            temp->prev   = tail; 
+            tail = tail->next;
+            tail->next = nullptr;
+        }
+
+            ++theSize;
+        }
 }
 
 
-template<class _Ty>
-const bool DoublyList<_Ty>::empty() const
+template<class T>
+const bool DoublyList<T>::empty() const
 {
     return head == nullptr;
 }
 
 
-template<class _Ty>
-const size_t DoublyList<_Ty>::size() const
+template<class T>
+const size_t DoublyList<T>::size() const
 {
     return theSize;
 }
 
 
-template<class _Ty>
-void DoublyList<_Ty>::push_back(const _Ty& val) 
+template<class T>
+void DoublyList<T>::push_back(const T& val) 
 {
+    nodeptr temp = new node(val);
+
+
     if (head == nullptr)
     {
-        head = new node(val);
+        head = temp;
         tail = head;
     }
     
     else
     {
-        nodeptr temp = new node(val);
         tail->next   = temp;
         temp->prev   = tail; 
-        tail = temp;
+        tail = tail->next;
     }
 
     ++theSize;
 }
 
 
-template<class _Ty>
-void DoublyList<_Ty>::push_front(const _Ty& val)  
+template<class T>
+void DoublyList<T>::push_front(const T& val)  
 {
+    nodeptr temp = new node(val);
+    
     if (head == nullptr)
     {
-        head = new node(val);
+        head = temp;
         tail = head;
     }
     
     else
     {
-        nodeptr temp = new node(val);
         head->prev = temp;
+        temp->next = head;
         head = temp;
     }
 
@@ -83,8 +108,8 @@ void DoublyList<_Ty>::push_front(const _Ty& val)
 }
 
 
-template<class _Ty>
-void DoublyList<_Ty>::pop_back() 
+template<class T>
+void DoublyList<T>::pop_back() 
 {
     if (empty())
         throw std::domain_error("List is empty : pop_back()");
@@ -97,8 +122,8 @@ void DoublyList<_Ty>::pop_back()
 }
 
 
-template<class _Ty>
-void DoublyList<_Ty>::pop_front() 
+template<class T>
+void DoublyList<T>::pop_front() 
 {
     if (empty())
         throw std::domain_error("List is empty : pop_front()");
@@ -112,8 +137,8 @@ void DoublyList<_Ty>::pop_front()
 }
 
 
-template<class _Ty>
-void DoublyList<_Ty>::clear() 
+template<class T>
+void DoublyList<T>::clear() 
 {
     nodeptr temp;
     
@@ -131,8 +156,8 @@ void DoublyList<_Ty>::clear()
 }
 
 
-template<class _Ty>
-_Ty DoublyList<_Ty>::front() const
+template<class T>
+T DoublyList<T>::front() const
 {
     if (empty())
         throw std::domain_error("List is empty : front()");
@@ -141,8 +166,8 @@ _Ty DoublyList<_Ty>::front() const
 }
 
 
-template<class _Ty>
-_Ty DoublyList<_Ty>::back() const
+template<class T>
+T DoublyList<T>::back() const
 {
     if (empty())
         throw std::domain_error("List is empty : back()");
@@ -151,15 +176,15 @@ _Ty DoublyList<_Ty>::back() const
 }
 
 
-template<class _Ty>
-typename DoublyList<_Ty>::Iterator DoublyList<_Ty>::begin() 
+template<class T>
+typename DoublyList<T>::Iterator DoublyList<T>::begin() 
 {
     return head;
 }
 
 
-template<class _Ty>
-typename DoublyList<_Ty>::Iterator DoublyList<_Ty>::end() 
+template<class T>
+typename DoublyList<T>::Iterator DoublyList<T>::end() 
 {
     return tail->next;
 }

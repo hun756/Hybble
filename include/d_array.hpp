@@ -4,141 +4,176 @@
  *  Author      :   Mehmet Ekemen
  *  Nickname    :   `hun
  *  Email       :   ekemenms@hotmail.com
- *  Date        :   22.10.2020
+ *  Date        :   5.12.2012 (DD-MM-YYYY)  (Updated)
  *  Github      :   github.com/hun756
  *  Resource    :   https://github.com/hun756/Data-Sutructures-in-CPlusPlus/
 **/
 
-/* Include guard of : DARRAY_HPP */
-#ifndef DARRAY_HPP
-#define DARRAY_HPP
+/* Include guard of : D_ARRAY_HPP */
+#ifndef D_ARRAY_HPP
+#define D_ARRAY_HPP
 
 
 #include <initializer_list>
 #include <cstddef>
 
 
-template <class _Ty>
+template <class T>
 class DArray
 {
 public:
 
     /**
-     *  contructor 
+     *  @brief
+     *      Construct a new DArray object
     **/
     DArray();
 
 
     /**
-     *  constructor
-    **/
+     *  @brief
+     *      Destroy the DArray object
+     */
     ~DArray();
 
 
     /**
-     *  Constructor with initializer list 
+     *  @brief
+     *      Construct a new DArray object
      *
-     *  @param      l   ->      object from initializer_list class
+     *  @param  l
+     *      Object from initializer_list class.
     **/
-    DArray(std::initializer_list<_Ty>);
+    DArray(std::initializer_list<T>);
 
 
     /**
-     *  empty() method : if list has no element, return true.
+     *  @brief
+     *      This method checks if the array is empty.
      *
-     *  @return 	 value of bool  ->  (index == 0)
+     *  @return
+     *      value of bool
+     *
+     *  @retval
+     *      true if index == 0
     **/
-    const bool empty() const;
+    [[nodiscard]] const bool empty() const;
 
 
     /**
-     *  size() method : returns elemnt's count.
+     *  @brief
+     *      This method returns the number of elements of the array.
      *
-     *  @return     index : size_t    ->    //
+     *  @return
+     *      size_t
+     *
+     *  @retval
+     *      index
     **/
-    const size_t size() const;
+    [[nodiscard]] const size_t size() const;
 
 
     /**
-     *  capacity() method : is the maximum number of elements the array 
-     *                      can take before dynamic enlargement or reduction.
+     *  @brief
+     *      This method is the maximum number of elements the array
+     *      can take before dynamic enlargement or reduction.
      *
-     *  @return 	 _capacity
+     *  @return
+     *      <size_t> capacity value.
     **/
-    const size_t capacity() const;
+    [[nodiscard]] const size_t capacity() const;
 
 
     /**
-     *  shrinkToFit method : brings capacity to the value of size.
+     *  @brief
+     *      This method : brings capacity to the value of size.
     **/
     void shrinkToFit();
 
     
     /**
-     *  at() method : takes the desired array element as a parameterç
+     *  @brief
+     *      This method takes the desired array element as a parameter.
      *
-     *  @param 		 i   : size_t   ->  
-     *  @return 	 _Ty&  reference from template 
-    **/
-    _Ty& at(size_t);
-
-    const _Ty& at(size_t) const;
-
-
-    /**
-     *  overloading operator [] : takes the desired array element as a parameterç
+     *  @param[in]
+     *      It is the index of the directory to be accessed.
      *
-     *  @param 		 i   : size_t   ->  
-     *  @return 	 _Ty&  reference from template 
+     *  @return
+     *      T&  reference from template
     **/
-    _Ty& operator [](size_t);
+    T& at(size_t);
 
-    const _Ty& operator [](size_t)  const;
+    const T& at(size_t) const;
 
 
     /**
-     *  front() method :  returns first element in the array.
-     * 
-     *  @return     _Ty   ->    reference value of the template parameter.
-    **/
-    _Ty front() const;
-
-
-    /**
-     *  back() method :  returns last element in the array.
-     * 
-     *  @return     _Ty   ->    reference value of the template parameter.
-    **/
-    _Ty back() const;
-
-
-    /**
-     *  push_back() method : Typeadds an element to the ending of the dynamic array.
+     *  @brief
+     *      overloading operator [] : takes the desired array element
+     *      as a parameter.
      *
-     *  @param 		 val : const template reference
+     *  @param[in]
+     *      It is the index of the directory to be accessed.
+     *
+     *  @return
+     *      T&  reference from template
     **/
-    void push_back(const _Ty&);
+    T& operator [](size_t);
+
+    const T& operator [](size_t)  const;
 
 
     /**
-     *  pop_back() method : Removes the last item from list.  
+     *  @brief
+     *      This method :  returns first element in the array.
      * 
+     *  @return
+     *      the first element of the array.
     **/
-    void pop_back();
+    T front() const;
+
+
+    /**
+     *  @brief
+     *      This method :  returns first element in the array.
+     *
+     *  @return
+     *      the last element of the array.
+    **/
+    T back() const;
+
+
+    /**
+     *  @brief
+     *      This method adds an element to the ending of
+     *      the dynamic array.
+     *
+     *  @param  val
+     *      It is the value of the element to be added.
+    **/
+    void pushBack(const T&);
+
+
+    /**
+     *  @brief
+     *      This method removes the last item from list.
+    **/
+    void popBack();
+
+
+    // template<class... Args>
+    // T& emplaceBack(Args&&... args);
 
 private:
     void reAlloc();
 
 
-/* iterative methods */
-
-
 private:
-    _Ty*    data;
+    T*    data;
     size_t  index;
     size_t  _capacity;
 };
 
-#include "../src/d_array.cpp"
+//> template implementation..
+#include "d_array.tcc"
 
 #endif /* end of include guard : DARRAY_HPP */

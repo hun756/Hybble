@@ -18,15 +18,19 @@
 #ifndef ARRAY_ITERATOR_HPP
 #define ARRAY_ITERATOR_HPP
 
-#include "list_node.hpp"
-#include <array>
-
 
 template <class _Ty, size_t MaxSize>
 class ConstIterator
 {
 public:
-    ConstIterator() : current(nullptr) {}
+    // ---------------- FOR std::reverse_iterator ----------------
+    // using value_type        = _Ty;
+    // using difference_type   = ptrdiff_t;
+    // using pointer           = _Ty*;
+    // using reference         = _Ty&;
+    // -----------------------------------------------------------
+public:
+    ConstIterator();
 
     /**
      *  Constructor : 
@@ -37,20 +41,11 @@ public:
 
 
     /**
-     *  Overloading operator !=
-     *
-     *  @param 		 rhs        ->  const iterator&
-     *  @return 	 !(current == rhs.current)
-    **/
-    const bool operator !=(ConstIterator&) const;
-
-
-    /**
      *  Overloading operator ++ (prefix)
      *
      *  @return 	 object from class iterator
     **/
-    const ConstIterator& operator ++();
+    ConstIterator& operator ++();
 
 
     /**
@@ -58,7 +53,23 @@ public:
      *
      *  @return 	 object from class iterator
     **/
-    const ConstIterator& operator ++(int);
+    ConstIterator& operator ++(int);
+
+
+    /**
+     *  Overloading operator ++ (prefix)
+     *
+     *  @return 	 object from class iterator
+    **/
+    ConstIterator& operator --();
+
+
+    /**
+     *  Overloading operator ++ (postfix)
+     *
+     *  @return 	 object from class iterator
+    **/
+    ConstIterator& operator --(int);
 
 
     /**
@@ -66,25 +77,24 @@ public:
      *
      *  @return 	 _Ty&    ->  adress of template value. Return this value of adress.
     **/
-    const _Ty& operator *() const;
+    _Ty& operator *() const;
 
-private:
-    _Ty* current;
-};
-template <class _Ty, size_t MaxSize>
-class Iterator : public ConstIterator<_Ty, MaxSize>
-{
-public:
-    // using       Base                =   ConstIterator<_Ty, MaxSize>;
- // using       iterator_class      =   Iterator<_Ty, MaxSize>;
 
-public:
     /**
-     *  Constructor : 
+     *  overloading operator *
      *
-     *  @param 		 _Ty*   initLock    -> 
+     *  @return 	 _Ty&    ->  adress of template value. Return this value of adress.
     **/
-    Iterator(_Ty*);
+    _Ty* operator ->() const;
+    
+
+    /**
+     *  Overloading operator !=
+     *
+     *  @param 		 rhs        ->  const iterator&
+     *  @return 	 !(current == rhs.current)
+    **/
+    bool operator !=(const ConstIterator&) const;
 
 
     /**
@@ -93,8 +103,157 @@ public:
      *  @param 		 rhs        ->  const iterator&
      *  @return 	 !(current == rhs.current)
     **/
-    bool operator !=(const Iterator&);
+    bool operator ==(const ConstIterator&) const;
 
+
+    /**
+     *  Overloading operator !=
+     *
+     *  @param 		 rhs        ->  const iterator&
+     *  @return 	 !(current == rhs.current)
+    **/
+    bool operator <(const ConstIterator&) const;
+
+
+    /**
+     *  Overloading operator !=
+     *
+     *  @param 		 rhs        ->  const iterator&
+     *  @return 	 !(current == rhs.current)
+    **/
+    bool operator >(const ConstIterator&) const;
+
+
+    /**
+     *  Overloading operator !=
+     *
+     *  @param 		 rhs        ->  const iterator&
+     *  @return 	 !(current == rhs.current)
+    **/
+    bool operator <=(const ConstIterator&) const;
+
+
+    /**
+     *  Overloading operator !=
+     *
+     *  @param 		 rhs        ->  const iterator&
+     *  @return 	 !(current == rhs.current)
+    **/
+    bool operator >=(const ConstIterator&) const;
+
+private:
+    const _Ty* current;
+};
+
+// implementation from ConstIterator
+template <class _Ty, size_t MaxSize>
+ConstIterator<_Ty, MaxSize>::ConstIterator() : current(nullptr)
+{
+
+}
+
+
+template<class _Ty, size_t MaxSize>
+ConstIterator<_Ty, MaxSize>::ConstIterator(_Ty* initLock)
+{
+    current = initLock;
+}
+
+
+template<class _Ty, size_t MaxSize>
+ConstIterator<_Ty, MaxSize>& ConstIterator<_Ty, MaxSize>::operator ++() 
+{
+    ++current;
+}
+
+
+template<class _Ty, size_t MaxSize>
+ConstIterator<_Ty, MaxSize>& ConstIterator<_Ty, MaxSize>::operator ++(int) 
+{
+    ConstIterator iter = *this;
+    ++(*this);
+    return iter;
+}
+
+
+template<class _Ty, size_t MaxSize>
+_Ty& ConstIterator<_Ty, MaxSize>::operator *() const
+{
+    return *current;
+}
+
+
+template<class _Ty, size_t MaxSize>
+_Ty* ConstIterator<_Ty, MaxSize>::operator ->() const
+{
+    return current;
+}
+
+
+template<class _Ty, size_t MaxSize>
+bool ConstIterator<_Ty, MaxSize>::operator !=(const ConstIterator& rhs) const
+{
+    return current != rhs.current;
+}
+
+
+template<class _Ty, size_t MaxSize>
+bool ConstIterator<_Ty, MaxSize>::operator ==(const ConstIterator& rhs) const
+{
+    return current == rhs.current;
+}
+
+
+template<class _Ty, size_t MaxSize>
+bool ConstIterator<_Ty, MaxSize>::operator <(const ConstIterator& rhs) const
+{
+    return current < rhs.current;
+}
+
+
+template<class _Ty, size_t MaxSize>
+bool ConstIterator<_Ty, MaxSize>::operator >(const ConstIterator& rhs) const
+{
+    return current > rhs.current;
+}
+
+
+template<class _Ty, size_t MaxSize>
+bool ConstIterator<_Ty, MaxSize>::operator <=(const ConstIterator& rhs) const
+{
+    return !(current > rhs.current);
+}
+
+
+template<class _Ty, size_t MaxSize>
+bool ConstIterator<_Ty, MaxSize>::operator >=(const ConstIterator& rhs) const
+{
+    return !(current < rhs.current);
+}
+
+// implementation end : ConstIterator
+    
+
+template <class _Ty, size_t MaxSize>
+class Iterator : public ConstIterator<_Ty, MaxSize>
+{
+public:
+    using       Base        =       ConstIterator<_Ty, MaxSize>;
+
+public:
+
+    /**
+     *  Type  your explain here...
+    **/
+    Iterator();
+
+
+    /**
+     *  Constructor : 
+     *
+     *  @param 		 _Ty*   initLock    -> 
+    **/
+    Iterator(_Ty*);
 
     /**
      *  Overloading operator ++ (prefix)
@@ -111,6 +270,21 @@ public:
     **/
     Iterator& operator ++(int);
 
+    /**
+     *  Overloading operator ++ (prefix)
+     *
+     *  @return 	 object from class iterator
+    **/
+    Iterator& operator --();
+
+
+    /**
+     *  Overloading operator ++ (postfix)
+     *
+     *  @return 	 object from class iterator
+    **/
+    Iterator& operator --(int);
+
 
     /**
      *  overloading operator *
@@ -119,31 +293,29 @@ public:
     **/
     _Ty& operator *();
 
-private:
-    _Ty* current;
+
+    /**
+     *  overloading operator *
+     *
+     *  @return 	 _Ty&    ->  adress of template value. Return this value of adress.
+    **/
+    _Ty* operator ->();
+
 };  
 
 // implementation from Iterator
 
 template<class _Ty, size_t MaxSize>
-Iterator<_Ty, MaxSize>::Iterator(_Ty* initLock) 
+Iterator<_Ty, MaxSize>::Iterator(_Ty* initLock)  : Base(initLock)
 {
-    current = initLock;
-}
-
-
-template<class _Ty, size_t MaxSize>
-bool Iterator<_Ty, MaxSize>::operator !=(const Iterator& rhs) 
-{
-    // TODO : basedeki constructor cagrilsin..!
-    return current != rhs.current;
+    
 }
 
 
 template<class _Ty, size_t MaxSize>
 Iterator<_Ty, MaxSize>& Iterator<_Ty, MaxSize>::operator ++() 
 {
-    current++;
+    Base::operator++();
     return *this;
 }
 
@@ -152,7 +324,24 @@ template<class _Ty, size_t MaxSize>
 Iterator<_Ty, MaxSize>& Iterator<_Ty, MaxSize>::operator ++(int) 
 {
     Iterator iter = *this;
-    ++(*this);
+    Base::operator++();
+    return iter;
+}
+
+
+template<class _Ty, size_t MaxSize>
+Iterator<_Ty, MaxSize>& Iterator<_Ty, MaxSize>::operator --() 
+{
+    Base::operator--();
+    return *this;
+}
+
+
+template<class _Ty, size_t MaxSize>
+Iterator<_Ty, MaxSize>& Iterator<_Ty, MaxSize>::operator --(int) 
+{
+    Iterator iter = *this;
+    Base::operator--();
     return iter;
 }
 
@@ -160,16 +349,361 @@ Iterator<_Ty, MaxSize>& Iterator<_Ty, MaxSize>::operator ++(int)
 template<class _Ty, size_t MaxSize>
 _Ty& Iterator<_Ty, MaxSize>::operator *() 
 {
-    return *current;
+    return const_cast<_Ty&>(Base::operator*());
 }
+
+
+template<class _Ty, size_t MaxSize>
+_Ty* Iterator<_Ty, MaxSize>::operator ->() 
+{
+    return const_cast<_Ty*>(Base::operator->());
+}
+
 // implementation end : Iterator
 
+template <class _Ty, size_t MaxSize>
+class ConstReverseIterator
+{
+public:
+    // ---------------- FOR std::reverse_iterator ----------------
+    // using value_type        = _Ty;
+    // using difference_type   = ptrdiff_t;
+    // using pointer           = _Ty*;
+    // using reference         = _Ty&;
+    // -----------------------------------------------------------
+public:
+    ConstReverseIterator();
+
+    /**
+     *  Constructor : 
+     *
+     *  @param 		 _Ty*   initLock    -> 
+    **/
+    ConstReverseIterator(_Ty*);
+
+
+    /**
+     *  Overloading operator ++ (prefix)
+     *
+     *  @return 	 object from class iterator
+    **/
+    ConstReverseIterator& operator ++();
+
+
+    /**
+     *  Overloading operator ++ (postfix)
+     *
+     *  @return 	 object from class iterator
+    **/
+    ConstReverseIterator& operator ++(int);
+
+
+    /**
+     *  Overloading operator ++ (prefix)
+     *
+     *  @return 	 object from class iterator
+    **/
+    ConstReverseIterator& operator --();
+
+
+    /**
+     *  Overloading operator ++ (postfix)
+     *
+     *  @return 	 object from class iterator
+    **/
+    ConstReverseIterator& operator --(int);
+
+
+    /**
+     *  overloading operator *
+     *
+     *  @return 	 _Ty&    ->  adress of template value. Return this value of adress.
+    **/
+    const _Ty& operator *() const;
+
+
+    /**
+     *  overloading operator *
+     *
+     *  @return 	 _Ty&    ->  adress of template value. Return this value of adress.
+    **/
+    _Ty* operator ->() const;
+    
+
+    /**
+     *  Overloading operator !=
+     *
+     *  @param 		 rhs        ->  const iterator&
+     *  @return 	 !(current == rhs.current)
+    **/
+    bool operator !=(const ConstReverseIterator&) const;
+
+
+    /**
+     *  Overloading operator !=
+     *
+     *  @param 		 rhs        ->  const iterator&
+     *  @return 	 !(current == rhs.current)
+    **/
+    bool operator ==(const ConstReverseIterator&) const;
+
+
+    /**
+     *  Overloading operator !=
+     *
+     *  @param 		 rhs        ->  const iterator&
+     *  @return 	 !(current == rhs.current)
+    **/
+    bool operator <(const ConstReverseIterator&) const;
+
+
+    /**
+     *  Overloading operator !=
+     *
+     *  @param 		 rhs        ->  const iterator&
+     *  @return 	 !(current == rhs.current)
+    **/
+    bool operator >(const ConstReverseIterator&) const;
+
+
+    /**
+     *  Overloading operator !=
+     *
+     *  @param 		 rhs        ->  const iterator&
+     *  @return 	 !(current == rhs.current)
+    **/
+    bool operator <=(const ConstReverseIterator&) const;
+
+
+    /**
+     *  Overloading operator !=
+     *
+     *  @param 		 rhs        ->  const iterator&
+     *  @return 	 !(current == rhs.current)
+    **/
+    bool operator >=(const ConstReverseIterator&) const;
+
+private:
+    const _Ty* current;
+};
+
+// implementation from ConstReverseIterator
+template <class _Ty, size_t MaxSize>
+ConstReverseIterator<_Ty, MaxSize>::ConstReverseIterator() : current(nullptr)
+{
+
+}
+
+
+template<class _Ty, size_t MaxSize>
+ConstReverseIterator<_Ty, MaxSize>::ConstReverseIterator(_Ty* initLock)
+{
+    current = initLock;
+}
+
+
+template<class _Ty, size_t MaxSize>
+ConstReverseIterator<_Ty, MaxSize>& ConstReverseIterator<_Ty, MaxSize>::operator ++() 
+{
+    ++current;
+    return *this;
+}
+
+
+template<class _Ty, size_t MaxSize>
+ConstReverseIterator<_Ty, MaxSize>& ConstReverseIterator<_Ty, MaxSize>::operator ++(int) 
+{
+    ConstReverseIterator iter = *this;
+    ++(*this);
+    return iter;
+}
+
+
+template<class _Ty, size_t MaxSize>
+const _Ty& ConstReverseIterator<_Ty, MaxSize>::operator *() const
+{
+    return *current;
+}
+
+
+template<class _Ty, size_t MaxSize>
+_Ty* ConstReverseIterator<_Ty, MaxSize>::operator ->() const
+{
+    return current;
+}
+
+
+template<class _Ty, size_t MaxSize>
+bool ConstReverseIterator<_Ty, MaxSize>::operator !=(const ConstReverseIterator& rhs) const
+{
+    return current != rhs.current;
+}
+
+
+template<class _Ty, size_t MaxSize>
+bool ConstReverseIterator<_Ty, MaxSize>::operator ==(const ConstReverseIterator& rhs) const
+{
+    return current == rhs.current;
+}
+
+
+template<class _Ty, size_t MaxSize>
+bool ConstReverseIterator<_Ty, MaxSize>::operator <(const ConstReverseIterator& rhs) const
+{
+    return current < rhs.current;
+}
+
+
+template<class _Ty, size_t MaxSize>
+bool ConstReverseIterator<_Ty, MaxSize>::operator >(const ConstReverseIterator& rhs) const
+{
+    return current > rhs.current;
+}
+
+
+template<class _Ty, size_t MaxSize>
+bool ConstReverseIterator<_Ty, MaxSize>::operator <=(const ConstReverseIterator& rhs) const
+{
+    return !(current > rhs.current);
+}
+
+
+template<class _Ty, size_t MaxSize>
+bool ConstReverseIterator<_Ty, MaxSize>::operator >=(const ConstReverseIterator& rhs) const
+{
+    return !(current < rhs.current);
+}
+
+// implementation end : ConstReverseIterator
+    
 
 template <class _Ty, size_t MaxSize>
-class ConstReverseIterator 
+class ReverseIterator : public ConstReverseIterator<_Ty, MaxSize>
 {
+public:
+    using       Base        =       ConstReverseIterator<_Ty, MaxSize>;
+
+public:
+
+    /**
+     *  Type  your explain here...
+    **/
+    ReverseIterator();
+
+
+    /**
+     *  Constructor : 
+     *
+     *  @param 		 _Ty*   initLock    -> 
+    **/
+    ReverseIterator(_Ty*);
+
+    /**
+     *  Overloading operator ++ (prefix)
+     *
+     *  @return 	 object from class ReverseIterator
+    **/
+    ReverseIterator& operator ++();
+
+
+    /**
+     *  Overloading operator ++ (postfix)
+     *
+     *  @return 	 object from class ReverseIterator
+    **/
+    ReverseIterator& operator ++(int);
+
+    /**
+     *  Overloading operator ++ (prefix)
+     *
+     *  @return 	 object from class ReverseIterator
+    **/
+    ReverseIterator& operator --();
+
+
+    /**
+     *  Overloading operator ++ (postfix)
+     *
+     *  @return 	 object from class ReverseIterator
+    **/
+    ReverseIterator& operator --(int);
+
+
+    /**
+     *  overloading operator *
+     *
+     *  @return 	 _Ty&    ->  adress of template value. Return this value of adress.
+    **/
+    _Ty& operator *();
+
+
+    /**
+     *  overloading operator *
+     *
+     *  @return 	 _Ty&    ->  adress of template value. Return this value of adress.
+    **/
+    _Ty* operator ->();
+
 };  
-template <class _Ty, size_t MaxSize>
-class ReverseIterator : public ConstIterator<_Ty, MaxSize>
+
+// implementation from ReverseIterator
+
+template<class _Ty, size_t MaxSize>
+ReverseIterator<_Ty, MaxSize>::ReverseIterator(_Ty* initLock)  : Base(initLock)
 {
-};  
+    
+}
+
+
+template<class _Ty, size_t MaxSize>
+ReverseIterator<_Ty, MaxSize>& ReverseIterator<_Ty, MaxSize>::operator ++() 
+{
+    Base::operator++();
+    return *this;
+}
+
+
+template<class _Ty, size_t MaxSize>
+ReverseIterator<_Ty, MaxSize>& ReverseIterator<_Ty, MaxSize>::operator ++(int) 
+{
+    ReverseIterator iter = *this;
+    Base::operator++();
+    return iter;
+}
+
+
+template<class _Ty, size_t MaxSize>
+ReverseIterator<_Ty, MaxSize>& ReverseIterator<_Ty, MaxSize>::operator --() 
+{
+    Base::operator--();
+    return *this;
+}
+
+
+template<class _Ty, size_t MaxSize>
+ReverseIterator<_Ty, MaxSize>& ReverseIterator<_Ty, MaxSize>::operator --(int) 
+{
+    ReverseIterator iter = *this;
+    Base::operator--();
+    return iter;
+}
+
+
+template<class _Ty, size_t MaxSize>
+_Ty& ReverseIterator<_Ty, MaxSize>::operator *() 
+{
+    return const_cast<_Ty&>(Base::operator*());
+}
+
+
+template<class _Ty, size_t MaxSize>
+_Ty* ReverseIterator<_Ty, MaxSize>::operator ->() 
+{
+    return const_cast<_Ty*>(Base::operator->());
+}
+
+// implementation end : ReverseIterator
+
+
+
+#endif /* end of include guard : ARRAY_ReverseIterator_HPP */

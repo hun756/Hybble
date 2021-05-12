@@ -4,14 +4,15 @@
  *  Author      :   Mehmet Ekemen
  *  Nickname    :   `hun
  *  Email       :   ekemenms@hotmail.com
- *  Date        :   24.10.2020
+ *  Date        :   05.02.2020  (updated)
  *  Github      :   github.com/hun756
  *  Resource    :   https://github.com/hun756/Data-Sutructures-in-CPlusPlus/
 **/
 
 
-#ifndef X_RED_BLACK_TREE_HPP
-#define X_RED_BLACK_TREE_HPP
+#ifndef RED_BLACK_TREE_NODE_HPP
+#define RED_BLACK_TREE_NODE_HPP
+
 
 enum class Color
 {
@@ -34,14 +35,15 @@ public:
 
     
     /**
-     *  constructor
+     *  Construct a new Red Black Tree Node object
      *
      *  @param 		 data       : _Ty       ->  value of template parameter.
      *  @param 		 parent     : RBNode*   ->  pointer from RBNode Class
      *  @param 		 left       : RBNode*   ->              ""
      *  @param 		 right      : RBNode*   ->              ""
-     *  @param 		 color      : Color     ->  Object of enumeration class 
+     *  @param 		 color      : Color     ->  Object of enumeration color class 
     **/
+
     RedBlackTreeNode(_Ty data = _Ty(), 
                      RedBlackTreeNode<_Ty>* parent = nullptr,
                      RedBlackTreeNode<_Ty>* left = nullptr, 
@@ -62,4 +64,4 @@ RedBlackTreeNode<_Ty>::RedBlackTreeNode(_Ty data,
 }
 
 
-#endif /* emd  X_RED_BLACK_TREE_HPP */
+#endif /* end of include guard :  RED_BLACK_TREE_NODE_HPP */
