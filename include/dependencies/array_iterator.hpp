@@ -30,87 +30,113 @@ public:
     // using reference         = T&;
     // -----------------------------------------------------------
 public:
+    /**
+     *  @brief 
+     *      Construct a new Const Iterator object
+     * 
+     */
     ConstIterator();
 
     /**
-     *  Constructor : 
-     *
-     *  @param 		 T*   initLock    -> 
-    **/
+     *  @brief 
+     *      Construct a new Const Iterator object
+     * 
+     */
     ConstIterator(T*);
 
 
     /**
-     *  Overloading operator ++ (prefix)
+     *  @brief 
+     *      Construct a new Const Iterator object
      *
-     *  @return 	 object from class iterator
+     *  @return ConstIterator&	 
+     *      Reference an object from class iterator.
     **/
     ConstIterator& operator ++();
 
 
     /**
-     *  Overloading operator ++ (postfix)
+     *  @brief 
+     *      Overloading operator ++ (postfix)
      *
-     *  @return 	 object from class iterator
+     *  @return 	 
+     *      Ref Object from class iterator
     **/
     ConstIterator& operator ++(int);
 
 
     /**
-     *  Overloading operator ++ (prefix)
+     *  @brief 
+     *      Overloading operator ++ (prefix)
      *
-     *  @return 	 object from class iterator
+     *  @return 	 
+     *      Object from class iterator
     **/
     ConstIterator& operator --();
 
 
     /**
-     *  Overloading operator ++ (postfix)
+     *  @brief 
+     *      Overloading operator ++ (postfix)
      *
-     *  @return 	 object from class iterator
+     *  @return 	 
+     *      Object from class iterator
     **/
     ConstIterator& operator --(int);
 
 
     /**
-     *  overloading operator *
+     *  @brief 
+     *      Overloading operator *
      *
-     *  @return 	 T&    ->  adress of template value. Return this value of adress.
+     *  @return T& 
+     *      Adress of template value. Return this value of adress.
     **/
     T& operator *() const;
 
 
     /**
-     *  overloading operator *
+     *  @brief 
+     *      Overloading operator ->
      *
-     *  @return 	 T&    ->  adress of template value. Return this value of adress.
+     *  @return T&    
+     *      Adress of template value. Return this value of adress.
     **/
     T* operator ->() const;
     
 
     /**
-     *  Overloading operator !=
+     *  @brief 
+     *      Overloading operator !=
      *
-     *  @param 		 rhs        ->  const iterator&
-     *  @return 	 !(current == rhs.current)
+     *  @param[in] rhs
+     * 
+     *  @retval
+     *      !(current == rhs.current)
     **/
     bool operator !=(const ConstIterator&) const;
 
 
     /**
-     *  Overloading operator !=
+     * @brief 
+     *      Overloading operator !=
      *
-     *  @param 		 rhs        ->  const iterator&
-     *  @return 	 !(current == rhs.current)
+     *  @param[in] rhs
+     * 
+     *  @retval 	 
+     *      !(current == rhs.current)
     **/
     bool operator ==(const ConstIterator&) const;
 
 
     /**
-     *  Overloading operator !=
+     *  @brief 
+     *      Overloading operator !=
      *
-     *  @param 		 rhs        ->  const iterator&
-     *  @return 	 !(current == rhs.current)
+     *  @param[in] rhs
+     *  
+     *  @retval 	 
+     *      !(current == rhs.current)
     **/
     bool operator <(const ConstIterator&) const;
 
@@ -118,26 +144,34 @@ public:
     /**
      *  Overloading operator !=
      *
-     *  @param 		 rhs        ->  const iterator&
-     *  @return 	 !(current == rhs.current)
+     *  @param[in] rhs
+     * 
+     *  @retval
+     *      !(current == rhs.current)
     **/
     bool operator >(const ConstIterator&) const;
 
 
     /**
-     *  Overloading operator !=
+     *  @brief 
+     *      Overloading operator !=
      *
-     *  @param 		 rhs        ->  const iterator&
-     *  @return 	 !(current == rhs.current)
+     *  @param[in] rhs
+     * 
+     *  @retval
+     *      !(current == rhs.current)
     **/
     bool operator <=(const ConstIterator&) const;
 
 
     /**
-     *  Overloading operator !=
+     *  @brief 
+     *      Overloading operator !=
      *
-     *  @param 		 rhs        ->  const iterator&
-     *  @return 	 !(current == rhs.current)
+     *  @param[in] rhs
+     * 
+     *  @retval
+     *      !(current == rhs.current)
     **/
     bool operator >=(const ConstIterator&) const;
 
@@ -145,7 +179,7 @@ private:
     const T* current;
 };
 
-// implementation from ConstIterator
+//> implementation from ConstIterator
 template <class T, size_t MaxSize>
 ConstIterator<T, MaxSize>::ConstIterator() : current(nullptr)
 {
@@ -243,61 +277,74 @@ public:
 public:
 
     /**
-     *  Type  your explain here...
-    **/
+     *  @brief 
+     *      Construct a new Iterator object
+     * 
+     */
     Iterator();
 
 
     /**
-     *  Constructor : 
-     *
-     *  @param 		 T*   initLock    -> 
-    **/
-    Iterator(T*);
+     * @brief 
+     *      Construct a new Iterator object
+     * 
+     * @param[in] initLock 
+     */
+    Iterator(T* initLock);
+
 
     /**
-     *  Overloading operator ++ (prefix)
-     *
-     *  @return 	 object from class iterator
-    **/
+     *  @brief 
+     *      Overloading operator ++ (prefix)
+     * 
+     *  @return Iterator& 
+     */
     Iterator& operator ++();
 
 
     /**
-     *  Overloading operator ++ (postfix)
-     *
-     *  @return 	 object from class iterator
-    **/
+     *  @brief 
+     *      Overloading operator ++ (postfix)
+     * 
+     *  @return Iterator& 
+     */
     Iterator& operator ++(int);
 
+
     /**
-     *  Overloading operator ++ (prefix)
-     *
-     *  @return 	 object from class iterator
-    **/
+     *  @brief 
+     *      Overloading operator ++ (prefix)
+     * 
+     *  @return Iterator& 
+     */
     Iterator& operator --();
 
 
     /**
-     *  Overloading operator ++ (postfix)
-     *
-     *  @return 	 object from class iterator
-    **/
+     *  @brief 
+     *      Overloading operator ++ (postfix)
+     * 
+     *  @return Iterator& 
+     */
     Iterator& operator --(int);
 
 
     /**
-     *  overloading operator *
+     *  @brief 
+     *      Overloading operator *
      *
-     *  @return 	 T&    ->  adress of template value. Return this value of adress.
+     *  @return T&  
+     *      Adress of template value. Return this value of adress.
     **/
     T& operator *();
 
 
     /**
-     *  overloading operator *
+     *  @brief 
+     *      Overloading operator ->
      *
-     *  @return 	 T&    ->  adress of template value. Return this value of adress.
+     *  @return T& 
+     *      Adress of template value. Return this value of adress.
     **/
     T* operator ->();
 
@@ -375,111 +422,139 @@ public:
     ConstReverseIterator();
 
     /**
-     *  Constructor : 
-     *
-     *  @param 		 T*   initLock    -> 
-    **/
+     *  @brief 
+     *      Construct a new Const Reverse Iterator object.
+     * 
+     * @param[in] initLock
+     */
     ConstReverseIterator(T*);
 
 
     /**
-     *  Overloading operator ++ (prefix)
-     *
-     *  @return 	 object from class iterator
-    **/
+     *  @brief
+     *      Overloading operator ++ (prefix). 
+     * 
+     *  @return ConstReverseIterator& 
+     */
     ConstReverseIterator& operator ++();
 
 
     /**
-     *  Overloading operator ++ (postfix)
-     *
-     *  @return 	 object from class iterator
-    **/
+     *  @brief 
+     *      Overloading operator ++ (postfix)
+     * 
+     *  @return ConstReverseIterator& 
+     */
     ConstReverseIterator& operator ++(int);
 
 
     /**
-     *  Overloading operator ++ (prefix)
-     *
-     *  @return 	 object from class iterator
-    **/
+     *  @brief 
+     *      Overloading operator ++ (prefix)
+     * 
+     *  @return ConstReverseIterator& 
+     */
     ConstReverseIterator& operator --();
 
 
     /**
-     *  Overloading operator ++ (postfix)
-     *
-     *  @return 	 object from class iterator
-    **/
+     *  @brief 
+     *      Overloading operator ++ (postfix)
+     * 
+     *  @return ConstReverseIterator& 
+     */
     ConstReverseIterator& operator --(int);
 
 
     /**
-     *  overloading operator *
+     *  @brief 
+     *      Overloading operator *
      *
-     *  @return 	 T&    ->  adress of template value. Return this value of adress.
+     *  @return T&
+     *      Adress of template value. Return this value of adress.
     **/
     const T& operator *() const;
 
 
     /**
-     *  overloading operator *
+     *  @brief 
+     *      overloading operator ->
      *
-     *  @return 	 T&    ->  adress of template value. Return this value of adress.
+     *  @return T&
+     *      Adress of template value. Return this value of adress.
     **/
     T* operator ->() const;
     
 
     /**
-     *  Overloading operator !=
+     *  @brief 
+     * 
+     *      Overloading operator !=
      *
-     *  @param 		 rhs        ->  const iterator&
-     *  @return 	 !(current == rhs.current)
+     *  @param[in] rhs
+     * 
+     *  @retval
+     *      !(current == rhs.current)
     **/
     bool operator !=(const ConstReverseIterator&) const;
 
 
     /**
-     *  Overloading operator !=
+     *  @brief 
+     *      Overloading operator !=
      *
-     *  @param 		 rhs        ->  const iterator&
-     *  @return 	 !(current == rhs.current)
+     *  @param[in] rhs
+     * 
+     *  @retval
+     *      !(current == rhs.current)
     **/
     bool operator ==(const ConstReverseIterator&) const;
 
 
     /**
-     *  Overloading operator !=
+     *  @brief 
+     *      Overloading operator !=
      *
-     *  @param 		 rhs        ->  const iterator&
-     *  @return 	 !(current == rhs.current)
+     *  @param[in] rhs
+     * 
+     *  @retval
+     *      !(current == rhs.current)
     **/
     bool operator <(const ConstReverseIterator&) const;
 
 
     /**
-     *  Overloading operator !=
+     *  @brief 
+     *      Overloading operator !=
      *
-     *  @param 		 rhs        ->  const iterator&
-     *  @return 	 !(current == rhs.current)
+     *  @param[in] rhs
+     * 
+     *  @retval
+     *      !(current == rhs.current)
     **/
     bool operator >(const ConstReverseIterator&) const;
 
 
     /**
-     *  Overloading operator !=
+     *  @brief 
+     *      Overloading operator !=
      *
-     *  @param 		 rhs        ->  const iterator&
-     *  @return 	 !(current == rhs.current)
+     *  @param[in] rhs
+     * 
+     *  @retval
+     *      !(current == rhs.current)
     **/
     bool operator <=(const ConstReverseIterator&) const;
 
 
     /**
-     *  Overloading operator !=
+     *  @brief 
+     *      Overloading operator !=
      *
-     *  @param 		 rhs        ->  const iterator&
-     *  @return 	 !(current == rhs.current)
+     *  @param[in] rhs
+     * 
+     *  @return
+     *      !(current == rhs.current)
     **/
     bool operator >=(const ConstReverseIterator&) const;
 
@@ -586,61 +661,72 @@ public:
 public:
 
     /**
-     *  Type  your explain here...
-    **/
+     *  @brief 
+     *      Construct a new Reverse Iterator object
+     * 
+     */
     ReverseIterator();
 
 
     /**
-     *  Constructor : 
-     *
-     *  @param 		 T*   initLock    -> 
-    **/
+     *  @brief 
+     *      Construct a new Reverse Iterator object
+     * 
+     *  @param[in]  T*
+     */
     ReverseIterator(T*);
 
     /**
-     *  Overloading operator ++ (prefix)
-     *
-     *  @return 	 object from class ReverseIterator
-    **/
+     *  @brief 
+     *      Overloading operator ++ (prefix)
+     * 
+     *  @return ReverseIterator& 
+     */
     ReverseIterator& operator ++();
 
 
     /**
-     *  Overloading operator ++ (postfix)
-     *
-     *  @return 	 object from class ReverseIterator
-    **/
+     *  @brief 
+     *      Overloading operator ++ (postfix)
+     * 
+     *  @return ReverseIterator& 
+     */
     ReverseIterator& operator ++(int);
 
     /**
-     *  Overloading operator ++ (prefix)
-     *
-     *  @return 	 object from class ReverseIterator
-    **/
+     *  @brief
+     *      Overloading operator ++ (prefix)
+     * 
+     *  @return ReverseIterator& 
+     */
     ReverseIterator& operator --();
 
 
     /**
-     *  Overloading operator ++ (postfix)
-     *
-     *  @return 	 object from class ReverseIterator
-    **/
+     *  @brief 
+     *      Overloading operator ++ (postfix)
+     * 
+     *  @return ReverseIterator& 
+     */
     ReverseIterator& operator --(int);
 
 
     /**
-     *  overloading operator *
+     *  @brief 
+     *      Overloading operator *
      *
-     *  @return 	 T&    ->  adress of template value. Return this value of adress.
+     *  @return T&
+     *      Adress of template value. Return this value of adress.
     **/
     T& operator *();
 
 
     /**
-     *  overloading operator *
+     * @brief 
+     *      Overloading operator *
      *
-     *  @return 	 T&    ->  adress of template value. Return this value of adress.
+     *  @return T&
+     *      Adress of template value. Return this value of adress.
     **/
     T* operator ->();
 
