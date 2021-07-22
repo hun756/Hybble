@@ -35,9 +35,15 @@
 # Build directory
 build/
 cmake-build-debug
+
+# Editor
 .idea
 .vscode
 
 # Doxygen output
 html/
 latex/
+
+
+# Cache
+.cache/
