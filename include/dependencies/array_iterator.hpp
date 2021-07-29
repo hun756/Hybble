@@ -426,7 +426,7 @@ public:
      *      Construct a new Const Reverse Iterator object.
      * 
      * @param[in] initLock
-     */
+    **/
     ConstReverseIterator(T*);
 
 
@@ -435,7 +435,7 @@ public:
      *      Overloading operator ++ (prefix). 
      * 
      *  @return ConstReverseIterator& 
-     */
+    **/
     ConstReverseIterator& operator ++();
 
 
@@ -444,7 +444,7 @@ public:
      *      Overloading operator ++ (postfix)
      * 
      *  @return ConstReverseIterator& 
-     */
+    **/
     ConstReverseIterator& operator ++(int);
 
 
@@ -453,7 +453,7 @@ public:
      *      Overloading operator ++ (prefix)
      * 
      *  @return ConstReverseIterator& 
-     */
+    **/
     ConstReverseIterator& operator --();
 
 
@@ -462,7 +462,7 @@ public:
      *      Overloading operator ++ (postfix)
      * 
      *  @return ConstReverseIterator& 
-     */
+    **/
     ConstReverseIterator& operator --(int);
 
 
@@ -664,7 +664,7 @@ public:
      *  @brief 
      *      Construct a new Reverse Iterator object
      * 
-     */
+    **/
     ReverseIterator();
 
 
@@ -673,7 +673,7 @@ public:
      *      Construct a new Reverse Iterator object
      * 
      *  @param[in]  T*
-     */
+    **/
     ReverseIterator(T*);
 
     /**
@@ -681,7 +681,7 @@ public:
      *      Overloading operator ++ (prefix)
      * 
      *  @return ReverseIterator& 
-     */
+    **/
     ReverseIterator& operator ++();
 
 
@@ -690,7 +690,7 @@ public:
      *      Overloading operator ++ (postfix)
      * 
      *  @return ReverseIterator& 
-     */
+    **/
     ReverseIterator& operator ++(int);
 
     /**
@@ -698,7 +698,7 @@ public:
      *      Overloading operator ++ (prefix)
      * 
      *  @return ReverseIterator& 
-     */
+    **/
     ReverseIterator& operator --();
 
 
@@ -707,7 +707,7 @@ public:
      *      Overloading operator ++ (postfix)
      * 
      *  @return ReverseIterator& 
-     */
+    **/
     ReverseIterator& operator --(int);
 
 

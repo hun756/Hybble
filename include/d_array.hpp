@@ -16,6 +16,7 @@
 
 #include <initializer_list>
 #include <cstddef>
+#include "dependencies/array_iterator.hpp"
 
 
 namespace DSinCpp
@@ -35,7 +36,7 @@ namespace DSinCpp
         /**
          *  @brief
          *      Destroy the DArray object
-         */
+        **/
         ~DArray();
 
 
@@ -195,11 +196,13 @@ namespace DSinCpp
 
 
         /**
-         * @brief 
+         *  @brief 
          * 
-         * @tparam Args 
-         * @param args 
-         * @return T& 
+         *  @tparam Args 
+         * 
+         *  @param args 
+         * 
+         *  @return T& 
         **/
         template<class... Args>
         T& emplaceBack(Args&&... args);
@@ -208,7 +211,7 @@ namespace DSinCpp
         /**
          * @brief 
          * 
-         */
+        **/
         void reAlloc();
 
 
