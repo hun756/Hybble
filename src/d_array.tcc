@@ -163,7 +163,7 @@ namespace DSinCpp
     void DArray<T>::popBack()
     {
         if (empty())
-            throw std::out_of_range("Error...!");
+            throw std::out_of_range("Error...! [ DArray<>::popBack ] -> Reason: Array is Empty.!");
 
         data[index--].~T();
 

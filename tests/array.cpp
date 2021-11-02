@@ -1,6 +1,5 @@
 #include <gtest/gtest.h>
 
-#include "array.hpp"
 #include <vector>
 
 TEST(ArrayTest, ArrayElement) {
