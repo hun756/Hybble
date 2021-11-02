@@ -14,13 +14,14 @@
 #define ARRAY_HPP
 
 
-//> Header files
-#include <initializer_list>                 //> for constructor with brace installer
-#include <cstddef>                          //> for size_t usage
-#include "dependencies/array_iterator.hpp"  //> iterator classes for iterative operations of Array class.
+///< Header files
+#include <initializer_list>                 ///< for constructor with brace installer
+#include <cstddef>                          ///< for size_t usage
+#include "dependencies/array_iterator.hpp"  ///< iterator classes for iterative operations of Array class.
 #include <array>
 
-namespace DSinCpp {
+namespace DSinCpp
+{
     template <class T, size_t MaxSize>
     class Array
     {
