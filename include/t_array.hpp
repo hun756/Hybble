@@ -22,50 +22,50 @@
 namespace DSinCpp
 {
     template <class T>
-    class DArray
+    class TArray
     {
     public:
 
         /**
          *  @brief
-         *      Construct a new DArray object
+         *      Construct a new TArray object
         **/
-        DArray();
+        TArray();
 
 
         /**
          *  @brief
-         *      Destroy the DArray object
+         *      Destroy the TArray object
         **/
-        ~DArray();
+        ~TArray();
 
 
         /**
          *  @brief
-         *      Construct a new DArray object
+         *      Construct a new TArray object
          *
          *  @param  l
          *      Object from initializer_list class.
         **/
-        DArray(std::initializer_list<T>);
+        TArray(std::initializer_list<T>);
 
 
         /**
          *  @brief
-         *      Construct a new DArray object
+         *      Construct a new TArray object
          *
          *  @param[in] dArr
         **/
-        DArray(const DArray<T>& dArr);
+        TArray(const TArray<T>& dArr);
 
 
         /**
          *  @brief
-         *      Construct a new DArray object
+         *      Construct a new TArray object
          *
          *  @param dArr
         **/
-        DArray(DArray<T>&& dArr) noexcept;
+        TArray(TArray<T>&& dArr) noexcept;
 
 
         /**
@@ -79,7 +79,7 @@ namespace DSinCpp
          *  @retval booelan
         **/
         template<class U>
-        friend bool operator == (DArray<U>& lhs, DArray<U>& rhs);
+        friend bool operator == (TArray<U>& lhs, TArray<U>& rhs);
 
 
         /**
@@ -224,6 +224,6 @@ namespace DSinCpp
 
 
 //> template implementation..
-#include "d_array.tcc"
+#include "t_array.tcc"
 
 #endif /* end of include guard : DARRAY_HPP */

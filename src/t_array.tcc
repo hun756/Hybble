@@ -16,21 +16,21 @@
 namespace DSinCpp
 {
     template<class T>
-    DArray<T>::DArray() : data(nullptr), index(), _capacity(4)
+    TArray<T>::TArray() : data(nullptr), index(), _capacity(4)
     {
         data = new T[_capacity];
     }
 
 
     template<class T>
-    DArray<T>::~DArray()
+    TArray<T>::~TArray()
     {
         delete[] data;
     }
 
 
     template<class T>
-    DArray<T>::DArray(std::initializer_list<T> l) : index(0)
+    TArray<T>::TArray(std::initializer_list<T> l) : index(0)
     {
         _capacity = l.end() - l.begin();
 
@@ -42,21 +42,21 @@ namespace DSinCpp
 
 
     template<class T>
-    DArray<T>::DArray(const DArray<T>& dArr)
+    TArray<T>::TArray(const TArray<T>& dArr)
     {
 
     }
 
 
     template<class T>
-    DArray<T>::DArray(DArray<T>&& dArr) noexcept
+    TArray<T>::TArray(TArray<T>&& dArr) noexcept
     {
 
     }
 
 
     template<class T>
-    bool operator == (DArray<T>& lhs, DArray<T>& rhs)
+    bool operator == (TArray<T>& lhs, TArray<T>& rhs)
     {
         if (lhs.size() != rhs.size())
             return false;
@@ -70,35 +70,35 @@ namespace DSinCpp
 
 
     template<class T>
-    const bool DArray<T>::empty() const
+    const bool TArray<T>::empty() const
     {
         return index == 0;
     }
 
 
     template<class T>
-    const size_t DArray<T>::size() const
+    const size_t TArray<T>::size() const
     {
         return index;
     }
 
 
     template<class T>
-    const size_t DArray<T>::capacity() const
+    const size_t TArray<T>::capacity() const
     {
         return _capacity;
     }
 
 
     template<class T>
-    void DArray<T>::shrinkToFit()
+    void TArray<T>::shrinkToFit()
     {
         _capacity = index;
     }
 
 
     template<class T>
-    T& DArray<T>::at(size_t i)
+    T& TArray<T>::at(size_t i)
     {
         if (i >= _capacity) {
             throw std::out_of_range("Error..! The index you want to reach is exceed the bounds of the array.");
@@ -109,7 +109,7 @@ namespace DSinCpp
 
 
     template<class T>
-    const T& DArray<T>::at(size_t i) const
+    const T& TArray<T>::at(size_t i) const
     {
         if (i >= _capacity)
             throw std::out_of_range("Error..! The index you want to reach is exceed the bounds of the array.");
@@ -119,35 +119,35 @@ namespace DSinCpp
 
 
     template<class T>
-    T& DArray<T>::operator [](size_t i)
+    T& TArray<T>::operator [](size_t i)
     {
         return at(i);
     }
 
 
     template<class T>
-    const T& DArray<T>::operator [](size_t i) const
+    const T& TArray<T>::operator [](size_t i) const
     {
         return at(i);
     }
 
 
     template<class T>
-    T DArray<T>::front() const
+    T TArray<T>::front() const
     {
         return data + 0;
     }
 
 
     template<class T>
-    T DArray<T>::back() const
+    T TArray<T>::back() const
     {
         return data + size();
     }
 
 
     template<class T>
-    void DArray<T>::pushBack(const T& val)
+    void TArray<T>::pushBack(const T& val)
     {
         if (size() == capacity())
         {
@@ -160,10 +160,10 @@ namespace DSinCpp
 
 
     template<class T>
-    void DArray<T>::popBack()
+    void TArray<T>::popBack()
     {
         if (empty())
-            throw std::out_of_range("Error...! [ DArray<>::popBack ] -> Reason: Array is Empty.!");
+            throw std::out_of_range("Error...! [ TArray<>::popBack ] -> Reason: Array is Empty.!");
 
         data[index--].~T();
 
@@ -178,7 +178,7 @@ namespace DSinCpp
 
      template<class T>
      template<class... Args>
-     T& DArray<T>::emplaceBack(Args&&... args)
+     T& TArray<T>::emplaceBack(Args&&... args)
      {
          if (size() >= _capacity)
          {
@@ -192,7 +192,7 @@ namespace DSinCpp
 
 
     template<class T>
-    void DArray<T>::reAlloc()
+    void TArray<T>::reAlloc()
     {
         T* temp = new T[_capacity];
 

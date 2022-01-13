@@ -13,7 +13,7 @@ TEST(DynamicArrayTest, InitializeWithList)
 
 TEST(DynamicArrayTest, Elements)
 {
-    DSinCpp::DArray<int> dArr{1, 2, 3};
+    DSinCpp::TArray<int> dArr{1, 2, 3};
 
     ASSERT_EQ(dArr.size(), 3);
     ASSERT_EQ(dArr[0], 1);
@@ -31,7 +31,7 @@ TEST(DynamicArrayTest, Elements)
 
 TEST(DynamicArrayTest, CapacityControl)
 {
-    auto *dArr = new DSinCpp::DArray<int>{1, 2, 3};
+    auto *dArr = new DSinCpp::TArray<int>{1, 2, 3};
 
     ASSERT_EQ(dArr->capacity(), 3);
 
@@ -61,7 +61,7 @@ TEST(DynamicArrayTest, CapacityControl)
     dArr = nullptr;
 
 
-    dArr = new DSinCpp::DArray<int>{1, 2, 3, 4, 5, 6, 7, 8};
+    dArr = new DSinCpp::TArray<int>{1, 2, 3, 4, 5, 6, 7, 8};
     ASSERT_EQ(dArr->capacity(), dArr->size());
 
     const size_t size = dArr->size();
@@ -81,7 +81,7 @@ TEST(DynamicArrayTest, CapacityControl)
 
 
     //>--------------------------------
-    dArr = new DSinCpp::DArray<int>();
+    dArr = new DSinCpp::TArray<int>();
 
     for (size_t i = 0; i < 20; ++i)
     {
@@ -108,7 +108,7 @@ TEST(DynamicArrayTest, CapacityControl)
 
     std::vector<Person> testVector;
 
-    DSinCpp::DArray<Person> personArr;
+    DSinCpp::TArray<Person> personArr;
     ASSERT_EQ(personArr.capacity(), 4);
 
     delete dArr;
@@ -120,7 +120,7 @@ TEST(DynamicArrayTest, SizeControl)
 
 TEST(DynamicArrayTest, PopEmptyMethods)
 {
-    DSinCpp::DArray<int> dArr{};
+    DSinCpp::TArray<int> dArr{};
 
     EXPECT_THROW(
         {
@@ -130,7 +130,7 @@ TEST(DynamicArrayTest, PopEmptyMethods)
             }
             catch (const std::out_of_range &e)
             {
-                EXPECT_STREQ("Error...! [ DArray<>::popBack ] -> Reason: Array is Empty.!", e.what());
+                EXPECT_STREQ("Error...! [ TArray<>::popBack ] -> Reason: Array is Empty.!", e.what());
                 throw;
             }
         },
@@ -161,7 +161,7 @@ TEST(DynamicArrayTest, EmplaceBackinUserDefinedTypes)
         Vector2 &operator=(const Vector2 &other) = default;
     };
 
-    DSinCpp::DArray<Vector2> dArr;
+    DSinCpp::TArray<Vector2> dArr;
 
     std::vector<std::pair<float, float>> testVector{
         {2.0, 2.7},
@@ -199,7 +199,7 @@ TEST(DynamicArrayTest, ElementsSizeAndCapacity)
 
 TEST(DynamicArrayTest, IndexOverFlow)
 {
-    DSinCpp::DArray<int> dArr{1, 2, 3, 4};
+    DSinCpp::TArray<int> dArr{1, 2, 3, 4};
 
     EXPECT_THROW(
         {
@@ -218,7 +218,7 @@ TEST(DynamicArrayTest, IndexOverFlow)
 
 TEST(DynamicArrayTest, ThrowNegativeIndex)
 {
-    DSinCpp::DArray<int> dArr{1, 2, 3, 4};
+    DSinCpp::TArray<int> dArr{1, 2, 3, 4};
 
     EXPECT_THROW(
         {

@@ -77,7 +77,7 @@ mingw32-make
 ## Containers
 
 -   Array
--   DArray (Vector)
+-   TArray (Vector)
 -   Lists
 -   Deque
 -   Queues

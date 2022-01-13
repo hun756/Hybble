@@ -35,14 +35,14 @@ namespace DSinCpp
 
         /**
          *  @brief
-         *      Construct a new DArray object
+         *      Construct a new TArray object
         **/
         Array() = default;
 
 
         /**
          *  @brief
-         *      Construct a new DArray object
+         *      Construct a new TArray object
          *
          *  @param  l
          *      Object from initializer_list class.
