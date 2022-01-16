@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "d_array.hpp"
+#include "t_array.hpp"
 #include <vector>
 #include <stdexcept>
 
