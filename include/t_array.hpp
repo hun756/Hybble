@@ -9,9 +9,9 @@
  *  Resource    :   https://github.com/hun756/Data-Sutructures-in-CPlusPlus/
 **/
 
-/* Include guard of : D_ARRAY_HPP */
-#ifndef D_ARRAY_HPP
-#define D_ARRAY_HPP
+/* Include guard of : T_ARRAY_HPP */
+#ifndef T_ARRAY_HPP
+#define T_ARRAY_HPP
 
 
 #include <initializer_list>
@@ -226,4 +226,4 @@ namespace DSinCpp
 //> template implementation..
 #include "t_array.tcc"
 
-#endif /* end of include guard : DARRAY_HPP */
+#endif /* end of include guard : T_ARRAY_HPP */
