@@ -68,6 +68,10 @@ namespace DSinCpp
         TArray(TArray<T>&& dArr) noexcept;
 
 
+        TArray& operator =(const TArray& dArr);
+
+        TArray& operator =(TArray&& dArr) noexcept ;
+
         /**
          *  @brief
          *      Overlod operator ==.
@@ -92,7 +96,7 @@ namespace DSinCpp
          *  @retval
          *      true if index == 0
         **/
-        [[nodiscard]] const bool empty() const;
+        [[nodiscard]] bool empty() const;
 
 
         /**
@@ -105,7 +109,7 @@ namespace DSinCpp
          *  @retval
          *      index
         **/
-        [[nodiscard]] const size_t size() const;
+        [[nodiscard]] size_t size() const;
 
 
         /**
@@ -116,7 +120,7 @@ namespace DSinCpp
          *  @return
          *      <size_t> capacity value.
         **/
-        [[nodiscard]] const size_t capacity() const;
+        [[nodiscard]] size_t capacity() const;
 
 
         /**

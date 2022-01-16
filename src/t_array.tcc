@@ -32,8 +32,7 @@ namespace DSinCpp
     template<class T>
     TArray<T>::TArray(std::initializer_list<T> l) : index(0)
     {
-        _capacity = l.end() - l.begin();
-
+        _capacity = l.size();
         data = new T[_capacity];
 
         for (auto listVal : l)
@@ -43,15 +42,44 @@ namespace DSinCpp
 
     template<class T>
     TArray<T>::TArray(const TArray<T>& dArr)
+        : _capacity(dArr.size())
     {
-
+        data = new T[_capacity];
+        for(index = 0; index < _capacity; index++)
+            data[index++] = dArr[index++];
     }
 
 
     template<class T>
     TArray<T>::TArray(TArray<T>&& dArr) noexcept
     {
+        _capacity = dArr.size();
+        data = new T[_capacity];
 
+        for(index = 0; index < _capacity; index++)
+            data[index++] = std::move(dArr[index++]);
+    }
+
+    template<class T>
+    TArray<T>& TArray<T>::operator =(const TArray& dArr)
+    {
+        _capacity = dArr.size();
+        data = new T[_capacity];
+        for(index = 0; index < _capacity; index++)
+            data[index++] = dArr[index++];
+
+        return *this;
+    }
+
+    template<class T>
+    TArray<T>& TArray<T>::operator =(TArray&& dArr) noexcept
+    {
+        _capacity = dArr.size();
+        data = new T[_capacity];
+        for(index = 0; index < _capacity; index++)
+            data[index++] = std::move(dArr[index++]);
+
+        return *this;
     }
 
 
@@ -70,21 +98,21 @@ namespace DSinCpp
 
 
     template<class T>
-    const bool TArray<T>::empty() const
+    bool TArray<T>::empty() const
     {
         return index == 0;
     }
 
 
     template<class T>
-    const size_t TArray<T>::size() const
+    size_t TArray<T>::size() const
     {
         return index;
     }
 
 
     template<class T>
-    const size_t TArray<T>::capacity() const
+    size_t TArray<T>::capacity() const
     {
         return _capacity;
     }
@@ -98,7 +126,7 @@ namespace DSinCpp
 
 
     template<class T>
-    T& TArray<T>::at(size_t i)
+    inline T& TArray<T>::at(size_t i)
     {
         if (i >= _capacity) {
             throw std::out_of_range("Error..! The index you want to reach is exceed the bounds of the array.");
@@ -109,7 +137,7 @@ namespace DSinCpp
 
 
     template<class T>
-    const T& TArray<T>::at(size_t i) const
+    inline const T& TArray<T>::at(size_t i) const
     {
         if (i >= _capacity)
             throw std::out_of_range("Error..! The index you want to reach is exceed the bounds of the array.");
