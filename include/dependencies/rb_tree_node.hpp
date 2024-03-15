@@ -3,16 +3,17 @@
  *  Explain     :   Node class for red black tree.
  *  Author      :   Mehmet Ekemen
  *  Nickname    :   `hun
- *  Email       :   ekemenms@hotmail.com
- *  Date        :   05.02.2020  (updated)
+ *  Email       :   ekemenms@gmail.com
+ *  Date        :   03.15.2024  (updated)
  *  Github      :   github.com/hun756
- *  Resource    :   https://github.com/hun756/Data-Sutructures-in-CPlusPlus/
+ *  Resource    :   https://github.com/hun756/Hybble
 **/
 
 
-#ifndef RED_BLACK_TREE_NODE_HPP
-#define RED_BLACK_TREE_NODE_HPP
+#ifndef RED_BLACK_TREE_NODE_HPP_kik5rs
+#define RED_BLACK_TREE_NODE_HPP_kik5rs
 
+#include <memory>
 
 enum class Color
 {
@@ -21,47 +22,28 @@ enum class Color
 };
 
 
-template <class _Ty>
-class RedBlackTreeNode
-{
+template <typename T>
+class RedBlackTreeNode {
 public:
-    
-    // members
-    _Ty                         data;
-    RedBlackTreeNode<_Ty>*      parent;
-    RedBlackTreeNode<_Ty>*      left;
-    RedBlackTreeNode<_Ty>*      right;
-    Color                       color;
+    T data;
+    std::unique_ptr<RedBlackTreeNode<T>> left;
+    std::unique_ptr<RedBlackTreeNode<T>> right;
+    RedBlackTreeNode<T>* parent;
+    Color color;
 
-    
-    /**
-     *  Construct a new Red Black Tree Node object
-     *
-     *  @param 		 data       : _Ty       ->  value of template parameter.
-     *  @param 		 parent     : RBNode*   ->  pointer from RBNode Class
-     *  @param 		 left       : RBNode*   ->              ""
-     *  @param 		 right      : RBNode*   ->              ""
-     *  @param 		 color      : Color     ->  Object of enumeration color class 
-    **/
+    explicit RedBlackTreeNode(
+        T data = T(),
+        RedBlackTreeNode<T>* parent = nullptr,
+        Color color = Color::Red)
+        : data(std::move(data)), parent(parent), color(color) {}
 
-    RedBlackTreeNode(_Ty data = _Ty(), 
-                     RedBlackTreeNode<_Ty>* parent = nullptr,
-                     RedBlackTreeNode<_Ty>* left = nullptr, 
-                     RedBlackTreeNode<_Ty>* right = nullptr,
-                     Color  color = Color::Red
-    );
+    RedBlackTreeNode(const RedBlackTreeNode&) = delete;
+    RedBlackTreeNode& operator=(const RedBlackTreeNode&) = delete;
+
+    RedBlackTreeNode(RedBlackTreeNode&&) noexcept = default;
+    RedBlackTreeNode& operator=(RedBlackTreeNode&&) noexcept = default;
+
+    ~RedBlackTreeNode() = default;
 };
 
-template <class _Ty>
-RedBlackTreeNode<_Ty>::RedBlackTreeNode(_Ty data, 
-                                        RedBlackTreeNode<_Ty>* parent,
-                                        RedBlackTreeNode<_Ty>* left, 
-                                        RedBlackTreeNode<_Ty>* right,
-                                        Color  color
-                        ) : data(data), parent(parent), left(left), right(right), color(color)
-{
-
-}
-
-
-#endif /* end of include guard :  RED_BLACK_TREE_NODE_HPP */
+#endif /* end of include guard :  RED_BLACK_TREE_NODE_HPP_kik5rs */
