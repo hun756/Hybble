@@ -5,7 +5,7 @@
 #
 # For many purposes, you may not need to change anything about this file.
 
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.2)
 
 # Set project name here.
 project(DATA_STRUCTURES_IN_CPP)
@@ -85,22 +85,6 @@ add_custom_target(gtest
 include(CTest)
 enable_testing()
 add_test(unit_tests ${PROJECT_BINARY_DIR}/${TEST_MAIN})
-
-
-# --------------------------------------------------------------------------------
-#                         Documentation (no change needed).
-# --------------------------------------------------------------------------------
-# Add a make target 'doc' to generate API documentation with Doxygen.
-# You should set options to your liking in the file 'Doxyfile.in'.
-find_package(Doxygen)
-if(DOXYGEN_FOUND)
-    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile @ONLY)
-    add_custom_target(doc ALL
-        ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile &> doxygen.log
-        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-        COMMENT "Generating API documentation with Doxygen" VERBATIM
-        )
-endif(DOXYGEN_FOUND)
 
 
 # --------------------------------------------------------------------------------
