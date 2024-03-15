@@ -7,23 +7,21 @@
  *  Date        :   03.15.2024  (updated)
  *  Github      :   github.com/hun756
  *  Resource    :   https://github.com/hun756/Hybble
-**/
-
+ **/
 
 #ifndef RED_BLACK_TREE_NODE_HPP_kik5rs
 #define RED_BLACK_TREE_NODE_HPP_kik5rs
 
 #include <memory>
 
-enum class Color
-{
+enum class Color {
     Red,
     Black
 };
 
-
 template <typename T>
-class RedBlackTreeNode {
+class RedBlackTreeNode
+{
 public:
     T data;
     std::unique_ptr<RedBlackTreeNode<T>> left;
@@ -31,11 +29,10 @@ public:
     RedBlackTreeNode<T>* parent;
     Color color;
 
-    explicit RedBlackTreeNode(
-        T data = T(),
-        RedBlackTreeNode<T>* parent = nullptr,
-        Color color = Color::Red)
-        : data(std::move(data)), parent(parent), color(color) {}
+    explicit RedBlackTreeNode(T data = T(), RedBlackTreeNode<T>* parent = nullptr, Color color = Color::Red)
+        : data(std::move(data)), parent(parent), color(color)
+    {
+    }
 
     RedBlackTreeNode(const RedBlackTreeNode&) = delete;
     RedBlackTreeNode& operator=(const RedBlackTreeNode&) = delete;
